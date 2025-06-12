@@ -1,0 +1,582 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>GDPR Cloud Compliance Assistant - Beta</title>\
+    <style>\
+        * \{\
+            margin: 0;\
+            padding: 0;\
+            box-sizing: border-box;\
+        \}\
+\
+        body \{\
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\
+            min-height: 100vh;\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+        \}\
+\
+        .container \{\
+            width: 90%;\
+            max-width: 1200px;\
+            background: white;\
+            border-radius: 20px;\
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);\
+            overflow: hidden;\
+            display: flex;\
+            height: 80vh;\
+        \}\
+\
+        .sidebar \{\
+            width: 300px;\
+            background: #2c3e50;\
+            color: white;\
+            padding: 20px;\
+            display: flex;\
+            flex-direction: column;\
+        \}\
+\
+        .logo \{\
+            text-align: center;\
+            margin-bottom: 30px;\
+        \}\
+\
+        .logo h1 \{\
+            font-size: 1.5rem;\
+            margin-bottom: 5px;\
+            color: #3498db;\
+        \}\
+\
+        .logo p \{\
+            font-size: 0.9rem;\
+            opacity: 0.8;\
+        \}\
+\
+        .user-profile \{\
+            background: rgba(255,255,255,0.1);\
+            padding: 15px;\
+            border-radius: 10px;\
+            margin-bottom: 20px;\
+        \}\
+\
+        .expertise-selector \{\
+            margin-bottom: 20px;\
+        \}\
+\
+        .expertise-selector select \{\
+            width: 100%;\
+            padding: 10px;\
+            border: none;\
+            border-radius: 5px;\
+            background: white;\
+            color: #2c3e50;\
+        \}\
+\
+        .quick-actions \{\
+            flex: 1;\
+        \}\
+\
+        .quick-actions h3 \{\
+            margin-bottom: 15px;\
+            color: #3498db;\
+        \}\
+\
+        .action-btn \{\
+            width: 100%;\
+            padding: 10px;\
+            margin-bottom: 10px;\
+            background: transparent;\
+            border: 1px solid #3498db;\
+            color: #3498db;\
+            border-radius: 5px;\
+            cursor: pointer;\
+            transition: all 0.3s;\
+        \}\
+\
+        .action-btn:hover \{\
+            background: #3498db;\
+            color: white;\
+        \}\
+\
+        .chat-area \{\
+            flex: 1;\
+            display: flex;\
+            flex-direction: column;\
+        \}\
+\
+        .chat-header \{\
+            background: #34495e;\
+            color: white;\
+            padding: 20px;\
+            text-align: center;\
+        \}\
+\
+        .chat-messages \{\
+            flex: 1;\
+            padding: 20px;\
+            overflow-y: auto;\
+            background: #f8f9fa;\
+        \}\
+\
+        .message \{\
+            margin-bottom: 20px;\
+            display: flex;\
+            align-items: flex-start;\
+        \}\
+\
+        .message.user \{\
+            justify-content: flex-end;\
+        \}\
+\
+        .message-content \{\
+            max-width: 70%;\
+            padding: 15px;\
+            border-radius: 15px;\
+            position: relative;\
+        \}\
+\
+        .message.bot .message-content \{\
+            background: white;\
+            border: 1px solid #e1e8ed;\
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);\
+        \}\
+\
+        .message.user .message-content \{\
+            background: #3498db;\
+            color: white;\
+        \}\
+\
+        .message-avatar \{\
+            width: 40px;\
+            height: 40px;\
+            border-radius: 50%;\
+            margin: 0 10px;\
+            display: flex;\
+            align-items: center;\
+            justify-content: center;\
+            font-weight: bold;\
+        \}\
+\
+        .message.bot .message-avatar \{\
+            background: #2c3e50;\
+            color: white;\
+        \}\
+\
+        .message.user .message-avatar \{\
+            background: #3498db;\
+            color: white;\
+        \}\
+\
+        .chat-input \{\
+            padding: 20px;\
+            background: white;\
+            border-top: 1px solid #e1e8ed;\
+            display: flex;\
+            gap: 10px;\
+        \}\
+\
+        .chat-input input \{\
+            flex: 1;\
+            padding: 15px;\
+            border: 1px solid #ddd;\
+            border-radius: 25px;\
+            outline: none;\
+            font-size: 16px;\
+        \}\
+\
+        .chat-input button \{\
+            padding: 15px 25px;\
+            background: #3498db;\
+            color: white;\
+            border: none;\
+            border-radius: 25px;\
+            cursor: pointer;\
+            font-weight: bold;\
+            transition: background 0.3s;\
+        \}\
+\
+        .chat-input button:hover \{\
+            background: #2980b9;\
+        \}\
+\
+        .typing-indicator \{\
+            display: none;\
+            padding: 10px;\
+            font-style: italic;\
+            color: #666;\
+        \}\
+\
+        .compliance-card \{\
+            background: #e8f6ff;\
+            border-left: 4px solid #3498db;\
+            padding: 15px;\
+            margin: 10px 0;\
+            border-radius: 5px;\
+        \}\
+\
+        .risk-level \{\
+            display: inline-block;\
+            padding: 3px 8px;\
+            border-radius: 12px;\
+            font-size: 0.8rem;\
+            font-weight: bold;\
+            margin-left: 10px;\
+        \}\
+\
+        .risk-high \{ background: #ff6b6b; color: white; \}\
+        .risk-medium \{ background: #ffa726; color: white; \}\
+        .risk-low \{ background: #66bb6a; color: white; \}\
+\
+        @media (max-width: 768px) \{\
+            .container \{\
+                flex-direction: column;\
+                height: 100vh;\
+            \}\
+            \
+            .sidebar \{\
+                width: 100%;\
+                height: auto;\
+            \}\
+        \}\
+    </style>\
+</head>\
+<body>\
+    <div class="container">\
+        <div class="sidebar">\
+            <div class="logo">\
+                <h1>GDPR Compliance</h1>\
+                <p>Cloud Configuration Assistant</p>\
+            </div>\
+            \
+            <div class="user-profile">\
+                <h4>User Profile</h4>\
+                <div class="expertise-selector">\
+                    <label>Expertise Level:</label>\
+                    <select id="expertise">\
+                        <option value="technical">Technical Team</option>\
+                        <option value="compliance">Compliance Team</option>\
+                        <option value="management">Management</option>\
+                    </select>\
+                </div>\
+            </div>\
+\
+            <div class="quick-actions">\
+                <h3>Quick Actions</h3>\
+                <button class="action-btn" onclick="quickAction('article32')">Article 32 - Security</button>\
+                <button class="action-btn" onclick="quickAction('dataTransfer')">Data Transfer Rules</button>\
+                <button class="action-btn" onclick="quickAction('awsConfig')">AWS Configuration</button>\
+                <button class="action-btn" onclick="quickAction('azureConfig')">Azure Configuration</button>\
+                <button class="action-btn" onclick="quickAction('riskAssessment')">Risk Assessment</button>\
+                <button class="action-btn" onclick="quickAction('complianceCheck')">Compliance Check</button>\
+            </div>\
+        </div>\
+\
+        <div class="chat-area">\
+            <div class="chat-header">\
+                <h2>AI-Powered GDPR Compliance Assistant</h2>\
+                <p>Get contextual guidance for cloud configuration compliance</p>\
+            </div>\
+\
+            <div class="chat-messages" id="chatMessages">\
+                <div class="message bot">\
+                    <div class="message-avatar">\uc0\u55358 \u56598 </div>\
+                    <div class="message-content">\
+                        <strong>Welcome to the GDPR Cloud Compliance Assistant!</strong><br><br>\
+                        I'm here to help financial institutions translate GDPR requirements into actionable cloud configuration guidance. I can assist with:\
+                        <ul style="margin: 10px 0; padding-left: 20px;">\
+                            <li>GDPR article interpretation for cloud environments</li>\
+                            <li>Cloud configuration recommendations (AWS, Azure, GCP)</li>\
+                            <li>Compliance gap analysis</li>\
+                            <li>Risk assessments for financial services</li>\
+                        </ul>\
+                        How can I help you today?\
+                    </div>\
+                </div>\
+            </div>\
+\
+            <div class="typing-indicator" id="typingIndicator">\
+                Assistant is typing...\
+            </div>\
+\
+            <div class="chat-input">\
+                <input type="text" id="messageInput" placeholder="Ask about GDPR compliance, cloud configuration, or specific articles..." />\
+                <button onclick="sendMessage()">Send</button>\
+            </div>\
+        </div>\
+    </div>\
+\
+    <script>\
+        // Knowledge base for GDPR compliance guidance\
+        const gdprKnowledgeBase = \{\
+            article32: \{\
+                title: "Article 32 - Security of Processing",\
+                content: "Requires appropriate technical and organizational measures to ensure security appropriate to the risk.",\
+                cloudImplementation: \{\
+                    aws: "Enable AWS CloudTrail, use KMS for encryption, implement IAM roles with least privilege",\
+                    azure: "Enable Azure Security Center, use Azure Key Vault, implement RBAC",\
+                    gcp: "Enable Cloud Security Command Center, use Cloud KMS, implement IAM with principle of least privilege"\
+                \},\
+                riskLevel: "high"\
+            \},\
+            dataTransfer: \{\
+                title: "Data Transfer Compliance (Articles 44-50)",\
+                content: "Rules for transferring personal data outside the EU/EEA.",\
+                cloudImplementation: \{\
+                    general: "Ensure data residency controls, use Standard Contractual Clauses (SCCs), implement data localization"\
+                \},\
+                riskLevel: "high"\
+            \},\
+            article25: \{\
+                title: "Article 25 - Data Protection by Design and Default",\
+                content: "Implement data protection measures by design and by default.",\
+                cloudImplementation: \{\
+                    general: "Enable encryption by default, implement privacy-preserving configurations, use data minimization principles"\
+                \},\
+                riskLevel: "medium"\
+            \}\
+        \};\
+\
+        function sendMessage() \{\
+            const input = document.getElementById('messageInput');\
+            const message = input.value.trim();\
+            \
+            if (message) \{\
+                addMessage(message, 'user');\
+                input.value = '';\
+                \
+                // Show typing indicator\
+                showTypingIndicator();\
+                \
+                // Simulate AI processing delay\
+                setTimeout(() => \{\
+                    hideTypingIndicator();\
+                    const response = generateResponse(message);\
+                    addMessage(response, 'bot');\
+                \}, 1500);\
+            \}\
+        \}\
+\
+        function addMessage(text, sender) \{\
+            const messagesContainer = document.getElementById('chatMessages');\
+            const messageDiv = document.createElement('div');\
+            messageDiv.className = `message $\{sender\}`;\
+            \
+            const avatar = document.createElement('div');\
+            avatar.className = 'message-avatar';\
+            avatar.textContent = sender === 'user' ? 'U' : '\uc0\u55358 \u56598 ';\
+            \
+            const content = document.createElement('div');\
+            content.className = 'message-content';\
+            content.innerHTML = text;\
+            \
+            if (sender === 'user') \{\
+                messageDiv.appendChild(content);\
+                messageDiv.appendChild(avatar);\
+            \} else \{\
+                messageDiv.appendChild(avatar);\
+                messageDiv.appendChild(content);\
+            \}\
+            \
+            messagesContainer.appendChild(messageDiv);\
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;\
+        \}\
+\
+        function generateResponse(message) \{\
+            const expertise = document.getElementById('expertise').value;\
+            const lowerMessage = message.toLowerCase();\
+            \
+            // Check for specific GDPR articles\
+            if (lowerMessage.includes('article 32') || lowerMessage.includes('security')) \{\
+                return generateArticleResponse('article32', expertise);\
+            \} else if (lowerMessage.includes('data transfer') || lowerMessage.includes('article 44')) \{\
+                return generateArticleResponse('dataTransfer', expertise);\
+            \} else if (lowerMessage.includes('aws') && lowerMessage.includes('config')) \{\
+                return generateAWSConfigResponse(expertise);\
+            \} else if (lowerMessage.includes('azure') && lowerMessage.includes('config')) \{\
+                return generateAzureConfigResponse(expertise);\
+            \} else if (lowerMessage.includes('risk assessment')) \{\
+                return generateRiskAssessmentResponse(expertise);\
+            \} else if (lowerMessage.includes('compliance check')) \{\
+                return generateComplianceCheckResponse(expertise);\
+            \} else \{\
+                return generateGeneralResponse(message, expertise);\
+            \}\
+        \}\
+\
+        function generateArticleResponse(articleKey, expertise) \{\
+            const article = gdprKnowledgeBase[articleKey];\
+            let response = `<div class="compliance-card">\
+                <strong>$\{article.title\}</strong>\
+                <span class="risk-level risk-$\{article.riskLevel\}">$\{article.riskLevel.toUpperCase()\} RISK</span>\
+                <p>$\{article.content\}</p>\
+            </div>`;\
+\
+            if (expertise === 'technical') \{\
+                response += `<br><strong>Technical Implementation:</strong><br>`;\
+                if (article.cloudImplementation.aws) \{\
+                    response += `<strong>AWS:</strong> $\{article.cloudImplementation.aws\}<br>`;\
+                \}\
+                if (article.cloudImplementation.azure) \{\
+                    response += `<strong>Azure:</strong> $\{article.cloudImplementation.azure\}<br>`;\
+                \}\
+                if (article.cloudImplementation.gcp) \{\
+                    response += `<strong>GCP:</strong> $\{article.cloudImplementation.gcp\}<br>`;\
+                \}\
+            \} else if (expertise === 'compliance') \{\
+                response += `<br><strong>Compliance Considerations:</strong><br>\
+                \'95 Document all security measures implemented<br>\
+                \'95 Conduct regular security assessments<br>\
+                \'95 Maintain audit trails of configuration changes<br>\
+                \'95 Ensure staff training on security procedures`;\
+            \} else \{\
+                response += `<br><strong>Management Overview:</strong><br>\
+                This requirement has $\{article.riskLevel\} risk impact and requires immediate attention from both technical and compliance teams.`;\
+            \}\
+\
+            return response;\
+        \}\
+\
+        function generateAWSConfigResponse(expertise) \{\
+            if (expertise === 'technical') \{\
+                return `<strong>AWS GDPR Configuration Checklist:</strong><br><br>\
+                <div class="compliance-card">\
+                \uc0\u9989  <strong>Encryption & Key Management:</strong><br>\
+                \'95 Enable EBS encryption by default<br>\
+                \'95 Use AWS KMS for key management<br>\
+                \'95 Enable S3 bucket encryption<br><br>\
+                \
+                \uc0\u9989  <strong>Access Control:</strong><br>\
+                \'95 Implement IAM roles with least privilege<br>\
+                \'95 Enable MFA for all users<br>\
+                \'95 Use AWS SSO for centralized access<br><br>\
+                \
+                \uc0\u9989  <strong>Monitoring & Logging:</strong><br>\
+                \'95 Enable AWS CloudTrail<br>\
+                \'95 Configure AWS Config for compliance monitoring<br>\
+                \'95 Set up CloudWatch for real-time monitoring\
+                </div>`;\
+            \} else \{\
+                return `AWS provides several GDPR compliance features including data encryption, access controls, and audit trails. I recommend working with your technical team to implement proper configurations based on your specific requirements.`;\
+            \}\
+        \}\
+\
+        function generateAzureConfigResponse(expertise) \{\
+            if (expertise === 'technical') \{\
+                return `<strong>Azure GDPR Configuration Checklist:</strong><br><br>\
+                <div class="compliance-card">\
+                \uc0\u9989  <strong>Security & Encryption:</strong><br>\
+                \'95 Enable Azure Disk Encryption<br>\
+                \'95 Use Azure Key Vault for secrets management<br>\
+                \'95 Configure Storage Service Encryption<br><br>\
+                \
+                \uc0\u9989  <strong>Identity & Access:</strong><br>\
+                \'95 Implement Azure AD with RBAC<br>\
+                \'95 Enable Conditional Access policies<br>\
+                \'95 Configure Privileged Identity Management<br><br>\
+                \
+                \uc0\u9989  <strong>Governance & Compliance:</strong><br>\
+                \'95 Enable Azure Security Center<br>\
+                \'95 Configure Azure Policy for compliance<br>\
+                \'95 Set up Azure Monitor for logging\
+                </div>`;\
+            \} else \{\
+                return `Azure offers comprehensive GDPR compliance tools including security centers, policy enforcement, and automated compliance monitoring. Your technical team should configure these based on your institution's risk profile.`;\
+            \}\
+        \}\
+\
+        function generateRiskAssessmentResponse(expertise) \{\
+            return `<strong>GDPR Cloud Risk Assessment Framework:</strong><br><br>\
+            <div class="compliance-card">\
+            <strong>High Risk Areas:</strong> <span class="risk-level risk-high">HIGH</span><br>\
+            \'95 Cross-border data transfers<br>\
+            \'95 Unencrypted data storage<br>\
+            \'95 Inadequate access controls<br><br>\
+            \
+            <strong>Medium Risk Areas:</strong> <span class="risk-level risk-medium">MEDIUM</span><br>\
+            \'95 Insufficient logging and monitoring<br>\
+            \'95 Incomplete data mapping<br>\
+            \'95 Weak incident response procedures<br><br>\
+            \
+            <strong>Recommended Actions:</strong><br>\
+            1. Conduct Data Protection Impact Assessment (DPIA)<br>\
+            2. Implement technical safeguards for high-risk areas<br>\
+            3. Establish regular compliance reviews<br>\
+            4. Create incident response procedures\
+            </div>`;\
+        \}\
+\
+        function generateComplianceCheckResponse(expertise) \{\
+            return `<strong>Automated Compliance Check Results:</strong><br><br>\
+            <div class="compliance-card">\
+            \uc0\u55357 \u56522  <strong>Overall Compliance Score: 78%</strong><br><br>\
+            \
+            \uc0\u9989  <strong>Compliant Areas:</strong><br>\
+            \'95 Data encryption at rest<br>\
+            \'95 Access logging enabled<br>\
+            \'95 Multi-factor authentication<br><br>\
+            \
+            \uc0\u9888 \u65039  <strong>Areas Needing Attention:</strong><br>\
+            \'95 Data retention policies not configured<br>\
+            \'95 Cross-region data transfer controls missing<br>\
+            \'95 Automated backup encryption needs review<br><br>\
+            \
+            \uc0\u55357 \u56615  <strong>Recommended Actions:</strong><br>\
+            1. Configure automated data retention policies<br>\
+            2. Implement data residency controls<br>\
+            3. Review and update backup encryption settings\
+            </div>`;\
+        \}\
+\
+        function generateGeneralResponse(message, expertise) \{\
+            const responses = [\
+                `Based on your $\{expertise\} role, I can provide specific guidance on GDPR compliance. Could you specify which cloud provider or GDPR article you're interested in?`,\
+                `I can help you understand GDPR requirements in the context of cloud configurations. What specific compliance challenge are you facing?`,\
+                `For financial institutions, GDPR compliance in cloud environments requires careful attention to data protection, security measures, and audit trails. What area would you like to explore?`\
+            ];\
+            \
+            return responses[Math.floor(Math.random() * responses.length)];\
+        \}\
+\
+        function quickAction(action) \{\
+            const actions = \{\
+                article32: "Tell me about Article 32 security requirements",\
+                dataTransfer: "Explain data transfer compliance rules",\
+                awsConfig: "Show me AWS configuration for GDPR compliance",\
+                azureConfig: "Show me Azure configuration for GDPR compliance",\
+                riskAssessment: "Perform a risk assessment",\
+                complianceCheck: "Run a compliance check"\
+            \};\
+            \
+            const input = document.getElementById('messageInput');\
+            input.value = actions[action];\
+            sendMessage();\
+        \}\
+\
+        function showTypingIndicator() \{\
+            document.getElementById('typingIndicator').style.display = 'block';\
+        \}\
+\
+        function hideTypingIndicator() \{\
+            document.getElementById('typingIndicator').style.display = 'none';\
+        \}\
+\
+        // Allow Enter key to send messages\
+        document.getElementById('messageInput').addEventListener('keypress', function(e) \{\
+            if (e.key === 'Enter') \{\
+                sendMessage();\
+            \}\
+        \});\
+    </script>\
+</body>\
+</html>}
